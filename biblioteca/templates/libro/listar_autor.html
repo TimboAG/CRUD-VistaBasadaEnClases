@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+<!--    -->
+{% block titulo %} lista de autores{% endblock titulo %} {% block cuerpo %}
+<h1>Lista de autores</h1>
+{% if autores %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">nombre</th>
+      <th scope="col">apellido</th>
+      <th scope="col">nacionalidad</th>
+      <th scope="col">descripcion</th>
+      <th scope="col">fecha creacion</th>
+      <th scope="col">opcion</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for autor in autores %}
+    <tr>
+      <td scope="row">{{autor.id}}</td>
+      <td scope="row">{{autor.nombre}}</td>
+      <td scope="row">{{autor.apellido}}</td>
+      <td scope="row">{{autor.nacionalidad}}</td>
+      <td scope="row">{{autor.descripcion}}</td>
+      <td scope="row">{{autor.fecha_creacion}}</td>
+      <td scope="row">
+        <a type="button" href="{% url 'libro:editar_autor' autor.id %}">
+          Editar
+        </a>
+        <a type="button" href="{% url 'libro:eliminar_autor' autor.id %}">
+          eliminar
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{%else %}
+<p>No hay autores registrados.</p>
+{% endif %} {% endblock cuerpo %}
